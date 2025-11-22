@@ -131,3 +131,11 @@ test('removeItem takes an item, removes the item and all of its descendants', ()
   treeStore.removeItem('123aabc')
   expect(treeStore.getAll()).toEqual([]);
 })
+
+test('updateItem takes an item, updates the item and actualizes other the tree store data accordingly', () => {
+  const treeStore = new TreeStore(testItems);
+  treeStore.updateItem({ id: 3, parent: 5, label: 'Item 100' });
+  expect(treeStore.getItem(3)).toEqual({ id: 3, parent: 5, label: 'Item 100' });
+  treeStore.updateItem({ id: 11, parent: 3, label: 'Item 222' });
+  expect(treeStore.getItem(11)).toEqual({ id: 11, parent: 3, label: 'Item 222' });
+})

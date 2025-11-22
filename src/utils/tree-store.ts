@@ -64,4 +64,11 @@ export class TreeStore {
       this.items.splice(this.items.findIndex(item => item.id === currentId), 1);
     }
   }
+
+  public updateItem(item: Item) {
+    const originalItem = this.getItem(item.id);
+    if (originalItem) {
+      Object.assign(originalItem, item);
+    }
+  }
 }
