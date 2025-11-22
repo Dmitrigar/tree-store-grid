@@ -14,4 +14,8 @@ export class TreeStore {
   public getItem(id: ID) {
     return this.items.find(item => item.id === id);
   }
+
+  public getChildren(parent: ID) {
+    return this.items.filter(item => item.parent === parent);
+  }
 }

@@ -34,3 +34,18 @@ test('getItem takes an id, returns item by the id', () => {
   expect(new TreeStore(testItems).getItem(11)).toEqual({ id: 11, parent: '123aabc', label: 'Item 2' });
   expect(new TreeStore(testItems).getItem('4545xyz')).toEqual({ id: '4545xyz', parent: 5, label: 'Item 8' });
 });
+
+test('getChildren takes a parent id, returns immediate children', () => {
+  expect(new TreeStore(testItems).getChildren('4545xyz')).toEqual([
+    { id: 3, parent: '4545xyz', label: 'Item 10' }
+  ]);
+  expect(new TreeStore(testItems).getChildren(16)).toEqual([
+    { id: 5, parent: 16, label: 'Item 7' },
+  ]); 
+  expect(new TreeStore(testItems).getChildren('123aabc')).toEqual([
+      { id: 11, parent: '123aabc', label: 'Item 2' },
+      { id: 16, parent: '123aabc', label: 'Item 3' },
+      { id: '1234cc', parent: '123aabc', label: 'Item 4' },
+  ]);
+  expect(new TreeStore(testItems).getChildren('abc999')).toEqual([]);
+});
