@@ -99,3 +99,35 @@ test('addItem takes an item, adds the item to items', () => {
   treeStore.addItem({ id: 1000, parent: 3, label: 'Item 11' });
   expect(treeStore.getItem(1000)).toEqual({ id: 1000, parent: 3, label: 'Item 11' });
 });
+
+test('removeItem takes an item, removes the item and all of its descendants', () => {
+  const treeStore = new TreeStore(testItems);
+  treeStore.removeItem(3);
+  expect(treeStore.getAll()).toEqual([    
+    { id: '123aabc', parent: null, label: 'Item 1' },
+
+    { id: 11, parent: '123aabc', label: 'Item 2' },
+    { id: 16, parent: '123aabc', label: 'Item 3' },
+    { id: '1234cc', parent: '123aabc', label: 'Item 4' },
+
+    { id: 2, parent: 11, label: 'Item 5' },
+    { id: 'abc999', parent: 11, label: 'Item 6' },
+
+    { id: 5, parent: 16, label: 'Item 7' },
+
+    { id: '4545xyz', parent: 5, label: 'Item 8' },
+    { id: 890, parent: 5, label: 'Item 9' }
+  ]);
+  treeStore.removeItem(16);
+  expect(treeStore.getAll()).toEqual([
+    { id: '123aabc', parent: null, label: 'Item 1' },
+
+    { id: 11, parent: '123aabc', label: 'Item 2' },
+    { id: '1234cc', parent: '123aabc', label: 'Item 4' },
+
+    { id: 2, parent: 11, label: 'Item 5' },
+    { id: 'abc999', parent: 11, label: 'Item 6' }
+  ]);
+  treeStore.removeItem('123aabc')
+  expect(treeStore.getAll()).toEqual([]);
+})

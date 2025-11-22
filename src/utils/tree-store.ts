@@ -54,4 +54,14 @@ export class TreeStore {
   public addItem(item: Item) {
     this.items.push(item);
   }
+
+  public removeItem(id: ID) {
+    const childrenIds = this.getAllChildren(id).map(item => item.id);
+    const ids = [id].concat(childrenIds);
+
+    while (ids.length) {
+      const currentId = ids.pop();
+      this.items.splice(this.items.findIndex(item => item.id === currentId), 1);
+    }
+  }
 }
