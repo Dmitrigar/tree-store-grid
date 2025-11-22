@@ -51,7 +51,7 @@ test('getChildren takes a parent id, returns immediate children', () => {
   expect(new TreeStore(testItems).getChildren('abc999')).toEqual([]);
 });
 
-test('getAllChildren takes a parent id, returns items with the parent\'s children recursively', () => {
+test('getAllChildren takes an id, returns all of the id item descendant items', () => {
   expect(new TreeStore(testItems).getAllChildren('4545xyz')).toEqual([
     { id: 3, parent: '4545xyz', label: 'Item 10' }
   ]);
@@ -81,7 +81,7 @@ test('getAllChildren takes a parent id, returns items with the parent\'s childre
   expect(new TreeStore(testItems).getAllChildren('abc999')).toEqual([]);
 });
 
-test('getAllParents takes an id, returns ancestors recursively starting with the id item itself', () => {
+test('getAllParents takes an id, returns all of the id item ancestors starting with the item itself', () => {
   expect(new TreeStore(testItems).getAllParents('123aabc')).toEqual([
     { id: '123aabc', parent: null, label: 'Item 1' }
   ]);
