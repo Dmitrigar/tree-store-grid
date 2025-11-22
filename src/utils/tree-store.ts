@@ -6,4 +6,8 @@ export class TreeStore {
   constructor(items: Item[]) {
     this.items = items;
   }
+
+  public getAll() {
+    return this.items;
+  }
 }

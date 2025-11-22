@@ -24,3 +24,8 @@ const testItems: Item[] = [
 test('constructor takes items array', () => {
   new TreeStore(testItems);
 })
+
+test('getAll returns initial items array', () => {
+  expect(new TreeStore([]).getAll()).toEqual([]);
+  expect(new TreeStore(testItems).getAll()).toEqual(testItems);
+});
