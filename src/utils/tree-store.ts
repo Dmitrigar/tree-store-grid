@@ -4,7 +4,7 @@ export class TreeStore {
   private readonly items!: Item[];
 
   constructor(items: Item[]) {
-    this.items = items;
+    this.items = items.slice();
   }
 
   public getAll() {
