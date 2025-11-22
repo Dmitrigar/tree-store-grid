@@ -79,3 +79,16 @@ test('getAllChildren takes a parent id, returns items with the parent\'s childre
   ]);
   expect(new TreeStore(testItems).getAllChildren('abc999')).toEqual([]);
 });
+
+test('getAllParents takes an id, returns parents recursively starting with the id item itself', () => {
+  expect(new TreeStore(testItems).getAllParents('123aabc')).toEqual([
+    { id: '123aabc', parent: null, label: 'Item 1' }
+  ]);  
+  expect(new TreeStore(testItems).getAllParents(3)).toEqual([
+    { id: 3, parent: '4545xyz', label: 'Item 10' },
+    { id: '4545xyz', parent: 5, label: 'Item 8' },
+    { id: 5, parent: 16, label: 'Item 7' },
+    { id: 16, parent: '123aabc', label: 'Item 3' },
+    { id: '123aabc', parent: null, label: 'Item 1' }
+  ]);
+});

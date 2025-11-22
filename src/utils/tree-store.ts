@@ -36,4 +36,18 @@ export class TreeStore {
 
     return children;
   }
+
+  public getAllParents(id: ID) {
+    const parents = [];
+    let currentItem = this.getItem(id);
+
+    while (currentItem) {
+      parents.push(currentItem);
+      currentItem = currentItem.parent
+        ? this.getItem(currentItem.parent)
+        : undefined;
+    }
+
+    return parents;
+  }
 }
