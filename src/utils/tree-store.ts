@@ -50,4 +50,8 @@ export class TreeStore {
 
     return parents;
   }
+
+  public addItem(item: Item) {
+    this.items.push(item);
+  }
 }

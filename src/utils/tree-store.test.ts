@@ -92,3 +92,9 @@ test('getAllParents takes an id, returns parents recursively starting with the i
     { id: '123aabc', parent: null, label: 'Item 1' }
   ]);
 });
+
+test('addItem takes an item, adds the item to items', () => {
+  const treeStore = new TreeStore(testItems);
+  treeStore.addItem({ id: 1000, parent: 3, label: 'Item 11' });
+  expect(treeStore.getItem(1000)).toEqual({ id: 1000, parent: 3, label: 'Item 11' });
+})
