@@ -29,3 +29,8 @@ test('getAll returns initial items array', () => {
   expect(new TreeStore([]).getAll()).toEqual([]);
   expect(new TreeStore(testItems).getAll()).toEqual(testItems);
 });
+
+test('getItem takes an id, returns item by the id', () => {
+  expect(new TreeStore(testItems).getItem(11)).toEqual({ id: 11, parent: '123aabc', label: 'Item 2' });
+  expect(new TreeStore(testItems).getItem('4545xyz')).toEqual({ id: '4545xyz', parent: 5, label: 'Item 8' });
+});
