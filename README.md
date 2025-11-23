@@ -1,5 +1,7 @@
 # Tree Store Grid (a test task)
 
+Details can be found in TASK.pdf.
+
 To install node modules:
 ```
 npm install
